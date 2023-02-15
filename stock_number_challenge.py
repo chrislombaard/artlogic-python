@@ -291,44 +291,44 @@ def create_new_stock_number_prefix(artwork, return_original_stock_number=False):
 	described below.
 
 	e.g artwork: {
-									"stock_number": "003",
-									"title": "Untitled (Florence) 2",
-									"id": 457,
-									"artist": "Flora Violet Brooke",
+		"stock_number": "003",
+		"title": "Untitled (Florence) 2",
+		"id": 457,
+		"artist": "Flora Violet Brooke",
 	}
 
 	Parameters:
-					artwork (dict): {
-																					stock_number (str): A string containing the stock number (optional),
-																					title (str): A string with the artwork title (required),
-																					id (int): An integer with the unique id of the artwork (required),
-																					artist (str): A string with the artists name (optional).
-					}
-					return_original_stock_number (bool): A boolean variable to return the original stock number.
+		artwork (dict): {
+			stock_number (str): A string containing the stock number (optional),
+			title (str): A string with the artwork title (required),
+			id (int): An integer with the unique id of the artwork (required),
+			artist (str): A string with the artists name (optional).
+		}
+		return_original_stock_number (bool): A boolean variable to return the original stock number.
 																																									 default: False
 
 	Returns:
-					new_stock_number_prefix (str): String of the new stock number prefix.
+		new_stock_number_prefix (str): String of the new stock number prefix.
 
 	Rules:
-					# Generate a new stock number 'prefix' - existing stock numbers.
-					# - two-letter prefix
-					# - first letter, if possible, first letter of artists first name.
-					# - 2nd letter, if possible, first letter of artists last name.
-					# - prefixes must be unique per artist
-					# *****
-					# - number: existing stock number number
-					# - separator: existing separator
-					# - suffix: existing suffix
-					# - general: stock number must be unique
-					# e.g cases
-					# *****
-					# - Kadeem Darzi, 'KAD 001' ----> new stock number = 'KD 001'
-					# - Kadeem Darzi 'KAD 0002' ----> new stock number = 'KD 0002'
-					# - James Perrogi 'JAM 001-S' ----> new stock number = 'JP 001-S'
-					# *****
-					# - skip artworks that have no stock numbers
-					# - edge cases to consider
+		# Generate a new stock number 'prefix' - existing stock numbers.
+		# - two-letter prefix
+		# - first letter, if possible, first letter of artists first name.
+		# - 2nd letter, if possible, first letter of artists last name.
+		# - prefixes must be unique per artist
+		# *****
+		# - number: existing stock number number
+		# - separator: existing separator
+		# - suffix: existing suffix
+		# - general: stock number must be unique
+		# e.g cases
+		# *****
+		# - Kadeem Darzi, 'KAD 001' ----> new stock number = 'KD 001'
+		# - Kadeem Darzi 'KAD 0002' ----> new stock number = 'KD 0002'
+		# - James Perrogi 'JAM 001-S' ----> new stock number = 'JP 001-S'
+		# *****
+		# - skip artworks that have no stock numbers
+		# - edge cases to consider
 	"""
 
 	stock_number = artwork.get("stock_number", "")
@@ -391,46 +391,46 @@ def create_new_stock_numbers(artwork_data):
 	described below.
 
 	e.g artwork: {
-					"stock_number": "003",
-					"title": "Untitled (Florence) 2",
-					"id": 457,
-					"artist": "Flora Violet Brooke",
+		"stock_number": "003",
+		"title": "Untitled (Florence) 2",
+		"id": 457,
+		"artist": "Flora Violet Brooke",
 	}
 
 	Parameters:
 	artwork (dict): {
-					stock_number (str): A string containing the stock number (optional),
-					title (str): A string with the artwork title (required),
-					id (int): An integer with the unique id of the artwork (required),
-					artist (str): A string with the artists name (optional).
+		stock_number (str): A string containing the stock number (optional),
+		title (str): A string with the artwork title (required),
+		id (int): An integer with the unique id of the artwork (required),
+		artist (str): A string with the artists name (optional).
 	}
 
 	Returns:
-					new_stock_number (str): String of the new stock number created.
+		new_stock_number (str): String of the new stock number created.
 
 	Rules:
-					# Generate a new stock number - using existing stock numbers.
-					# - two-letter prefix
-					# - first letter, if possible, first letter of artists first name.
-					# - 2nd letter, if possible, first letter of artists last name.
-					# - prefixes must be unique per artist
-					# *****
-					# - number: the number part must be an incrementing 3 digit number,
-																	specific to that artist, starting at 1, padded wiht zeros
-																	e.g '001', '002' etc.
-					# - separator: same separator for every artist and artwork.
-					# - suffix: keep existing suffix
-					# - general: Every stock number must be unique
-					# e.g cases
-					# *****
-					# - Kadeem Darzi, 'KAD 001' ----> new stock number = 'KD 001'
-					# - Kadeem Darzi 'KAD 0002' ----> new stock number = 'KD 0002'
-					# - James Perrogi 'JAM 001-S' ----> new stock number = 'JP 001-S'
-					# *****
-					# - skip artworks that have no stock numbers
-					# - if we already have created a stock number for an artist, the next one
-					#   should have the number 002, then 003 so increment them.
-					# - edge cases to consider
+		# Generate a new stock number - using existing stock numbers.
+		# - two-letter prefix
+		# - first letter, if possible, first letter of artists first name.
+		# - 2nd letter, if possible, first letter of artists last name.
+		# - prefixes must be unique per artist
+		# *****
+		# - number: the number part must be an incrementing 3 digit number,
+														specific to that artist, starting at 1, padded wiht zeros
+														e.g '001', '002' etc.
+		# - separator: same separator for every artist and artwork.
+		# - suffix: keep existing suffix
+		# - general: Every stock number must be unique
+		# e.g cases
+		# *****
+		# - Kadeem Darzi, 'KAD 001' ----> new stock number = 'KD 001'
+		# - Kadeem Darzi 'KAD 0002' ----> new stock number = 'KD 0002'
+		# - James Perrogi 'JAM 001-S' ----> new stock number = 'JP 001-S'
+		# *****
+		# - skip artworks that have no stock numbers
+		# - if we already have created a stock number for an artist, the next one
+		#   should have the number 002, then 003 so increment them.
+		# - edge cases to consider
 	"""
 	# We'll use this variable to keep track of artists we've already
 	# generated stock numbers for.
